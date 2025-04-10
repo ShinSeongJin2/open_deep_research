@@ -2,3 +2,6 @@ documents/
 refs/
 .venv/
 .env
+.idea/
+.vscode/
+open_deep_research.egg-info/
