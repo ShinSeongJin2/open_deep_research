@@ -5,3 +5,5 @@ refs/
 .idea/
 .vscode/
 open_deep_research.egg-info/
+.langgraph_api/
+__pycache__/

@@ -82,7 +82,7 @@ async def generate_report_plan(state: ReportState, config: RunnableConfig):
     system_instructions_query = report_planner_query_writer_instructions.format(topic=topic, report_organization=report_structure, number_of_queries=number_of_queries)
 
     # Generate queries  
-    results = structured_llm.invoke([SystemMessage(content=system_instructions_query),
+    results = await structured_llm.ainvoke([SystemMessage(content=system_instructions_query),
                                      HumanMessage(content="Generate search queries that will help with planning the sections of the report.")])
 
     # Web search
@@ -117,7 +117,7 @@ async def generate_report_plan(state: ReportState, config: RunnableConfig):
     
     # Generate the report sections
     structured_llm = planner_llm.with_structured_output(Sections)
-    report_sections = structured_llm.invoke([SystemMessage(content=system_instructions_sections),
+    report_sections = await structured_llm.ainvoke([SystemMessage(content=system_instructions_sections),
                                              HumanMessage(content=planner_message)])
 
     # Get sections
